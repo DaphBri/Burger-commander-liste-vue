@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <title>Titre</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+</head>
+<!-- voir version Nicola sur Slack!!! -->
+<body>
+    <div id="app">
+
+        <div class="summary"><strong>
+            Votre commande: {{subtotalPrice}} €
+          </strong> 
+          <!-- disabled = pour qu'on ne puisse pas clicker dessus si c'est vide ou zero -->
+          <button :disabled="subtotalPrice == 0" @click="order()"> 
+            Commander
+          </button>
+        </div>
+        <div class="burgers">
+          <div class="burger"  v-for="burger in burgers">
+            <h2>
+              <span>{{burger.quantity ? burger.quantity: "&nbsp;"}} </span> 
+              {{burger.name}} 
+              <span v-if="burger.veggie">🌿</span>
+            </h2>
+            <p>
+                {{burger.description}}
+            </p>
+            <div class="order">
+              <div class="buttons">
+                <button @click="increment(burger)">
+                  +
+                </button>
+                <button @click="decrement(burger)">
+                  -
+                </button>
+              </div>
+              <div class="price">
+                  {{burger.price}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+  <!-- ---------------------------------------------- -->
+
+
+
+
+
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="js/vue.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
